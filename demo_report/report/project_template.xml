@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="report_project_custom_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2><b>Project Report</b></h2>
+                        <p><strong><b>Project Name:</b></strong> <t t-esc="doc.name"/></p>
+                        <p><strong><b>Company:</b></strong> <t t-esc="doc.company_id.name"/></p>
+                        <p><strong><b>Responsible:</b></strong> <t t-esc="doc.user_id.name"/></p>
+                        <p><strong><b>Tags:</b></strong> <t t-foreach="doc.tag_ids" t-as="tag"><span t-esc="tag.name"/>  </t></p>
+                        <h3><b>Tasks:</b></h3>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Task Name</th>
+                                    <th>Task Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.task_ids" t-as="task">
+                                    <tr>
+                                        <td><t t-esc="task.name"/></td>
+                                        <td><t t-esc="task.description"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
